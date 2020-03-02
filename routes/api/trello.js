@@ -1,18 +1,20 @@
 const router = require('express').Router();
-const axios = require('axios');
-
-const baseUrl = 'https//api.trello.com/1'
-const test = `${baseUrl}/members/${process.env.TRELLO_MEMBERID}?key=${process.env.TRELLO_KEY}&token=${process.env.TRELLO_TOKEN}`;
+const baseUrl = 'https://api.trello.com/1'
+const fetch = require('node-fetch');
 
 
 router.get('/', (req, res) => {
-  // res.json({ ok: true, trello: true })
-  console.log(test)
-  console.log(process.env.TRELLO_KEY)
-  axios.get(`${baseUrl}/members/${process.env.TRELLO_MEMBERID}?key=${process.env.TRELLO_KEY}&token=${process.env.TRELLO_TOKEN}`)
-    .then(result => {
-      console.log(result);
-      res.json(result.data)
+  fetch(`${baseUrl}/members/${process.env.TRELLO_MEMBERID}/boards?key=${process.env.TRELLO_KEY}&token=${process.env.TRELLO_TOKEN}`, {
+    method: "GET"
+  })
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(answer => {
+      console.log(answer)
+      res.json(answer)
+
     })
     .catch(err => res.json(err))
 })
