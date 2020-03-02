@@ -1,0 +1,3 @@
+TRELLO_KEY=<Trello API Key>
+TRELLO_TOKEN=<Trello Token>
+TRELLO_MEMBERID=<Trello Member Id>
