@@ -1,22 +1,23 @@
 const router = require('express').Router();
-const baseUrl = 'https://api.trello.com/1'
-const fetch = require('node-fetch');
+const trello_controller = require('../../controllers/trello');
 
 
 router.get('/', (req, res) => {
-  fetch(`${baseUrl}/members/${process.env.TRELLO_MEMBERID}/boards?key=${process.env.TRELLO_KEY}&token=${process.env.TRELLO_TOKEN}`, {
-    method: "GET"
+  trello_controller.getMember(process.env.TRELLO_MEMBERID, function(result) {
+    res.json(result)
   })
-    .then(response => {
-      console.log(response)
-      return response.json()
-    })
-    .then(answer => {
-      console.log(answer)
-      res.json(answer)
+})
 
-    })
-    .catch(err => res.json(err))
+router.get('/boards', (req, res) => {
+  trello_controller.getMemberBoards(process.env.TRELLO_MEMBERID, function(result) {
+    res.json(result)
+  })
+})
+
+router.get('/cards', (req, res) => {
+  trello_controller.getMemberCards(process.env.TRELLO_MEMBERID, function(result) {
+    res.json(result)
+  })
 })
 
 module.exports = router;
