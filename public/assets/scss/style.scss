@@ -17,6 +17,7 @@ body {
 
 .container {
   min-height: 100vh;
+  padding-bottom: 200px;
 
   h1 {
     text-align: center;
@@ -25,6 +26,7 @@ body {
 
   p {
     text-align: center;
+    font-size: 22px;
   }
 }
 
@@ -33,6 +35,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .holder {
+    background-color: rgba(255, 255, 255, 0.877);
+    font-family: $font-primary;
+    padding: 30px;
+    border-radius: 10px;
+    color: $font-color;
+    width: 50%;
+    max-width: 700px;
+    min-width: 300px;
+  }
 }
 
 section.landing {
@@ -40,13 +53,25 @@ section.landing {
   background: url('../images/music.jpg');
   background-size: cover;
   background-attachment: fixed;
+  background-position: bottom;
+}
+
+section.info {
+  @extend %section-main;
+  background: url('../images/tapes.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+section.form {
+  @extend %section-main;
+  background: url('../images/record.jpg');
+  background-attachment: fixed;
+  background-size: cover;
   background-position: center;
 
   .holder {
-    background-color: rgba(255, 255, 255, 0.781);
-    font-family: $font-primary;
-    padding: 30px;
-    border-radius: 10px;
-    color: $font-color;
+    background-color: #222;
+    color: white;
   }
 }
